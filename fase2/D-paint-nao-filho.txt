@@ -1,0 +1,121 @@
+
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <queue>
+#define MAX 50
+using namespace std;
+int lin,col;
+void Ppintados(int *tabela[][MAX],int *tabelapintada[][MAX],int lin,int col,int vezes);
+int verificarlados(int *tabela[][MAX],int *tabelapintada[][MAX],int lin,int col,int vezes){
+    int Vilin,Vicol;
+    int cor = *tabela[lin][col];
+    int Pencontrados=0;
+    int encontrados;
+    Vicol=col-1;
+    Vilin=lin;
+    //checar a esquerda
+    if(Vicol>=0){ //se não estiver fora do indice da tabela
+            if(cor==*tabela[Vilin][Vicol]){ //se for igual nos pintamos da mesma cor
+                *tabelapintada[Vilin][Vicol]=1;
+                Ppintados(tabela,tabelapintada,Vilin,Vicol,vezes);
+                encontrados++;
+                }
+    }
+    //checar a direita
+    Vicol=col+1;
+    Vilin=lin;
+    if(Vicol<col){ //se não estiver fora do indice da tabela
+         if(cor==*tabela[Vilin][Vicol]){ //se for igual nos pintamos da mesma cor
+                *tabelapintada[Vilin][Vicol]=1;
+                Ppintados(tabela,tabelapintada,Vilin,Vicol,vezes);
+                encontrados++;
+         }
+    }
+    //checar em cima
+    Vicol=col;
+    Vilin=lin-1;
+    if(Vilin>=0){ //se não estiver fora do indice da tabela
+         if(cor==*tabela[Vilin][Vicol]){ //se for igual nos pintamos da mesma cor
+                *tabelapintada[Vilin][Vicol]=1;
+                Ppintados(tabela,tabelapintada,Vilin,Vicol,vezes);
+                encontrados++;
+         }
+    }
+    //checar embaixo
+    Vicol=col;
+    Vilin=lin+1;
+    if(Vilin<lin){ //se não estiver fora do indice da tabela
+         if(cor==*tabela[Vilin][Vicol]) {//se for igual nos pintamos da mesma cor
+                *tabelapintada[Vilin][Vicol]=1;
+                Ppintados(tabela,tabelapintada,Vilin,Vicol,vezes);
+                encontrados++;
+                }
+    }
+    return encontrados;
+}
+void Ppintados(int *tabela[][MAX],int *tabelapintada[][MAX],int lin,int col,int vezes){
+    int i = lin;
+    int j = col;
+    while(vezes!=0){
+    vezes = verificarlados(tabela,tabelapintada,lin,col,vezes-1);
+    }
+}
+int contarPixels(int *tabelapintada[][MAX],int lin,int col){
+    int contador=0;
+    for(int i=0;i<lin;i++){
+        	for(int j=0;j<col;j++){
+                	if(*tabelapintada[lin][col]==1)contador++;
+                	}
+        	}
+    return contador;
+}
+int main(){
+	cout << "Digite a quantidade de col:";
+	cin >> col;
+	cout << "Digite a quantidade de lins:";
+	cin >> lin;
+    int tabela[lin][col];
+    int tabelapintada[lin][col];
+    //iniciar tabelas
+    for(int i=0;i<lin;i++){
+        	for(int j=0;j<col;j++){
+                	tabela[i][j]=0;
+                	tabelapintada[i][j]=(unsigned int)0;
+                	}
+        	}
+    ////////
+	for(int i=0;i<lin;i++){
+        	for(int j=0;j<col;j++){
+                	system("cls");
+                	cout << "Digite a posição[" << i+1 <<"," << j+1 << "]:";
+                	cin >> tabela[i][j];
+                	}
+        	}
+    int clicado,clical,clicac;
+    cout << "Digite a lin clicada:";
+	cin >> clical;
+	cout << "Digite a col clicada:";
+	cin >> clicac;
+	clicado = tabela[clical][clicac];
+	for(int i=0;i<lin;i++){
+        	for(int j=0;j<col;j++){
+                	system("cls");
+                	cout << "Digite a posição[" << i+1 <<"," << j+1 << "]:";
+                	cin >> tabela[i][j];
+                	}
+        	}
+	Ppintados(&tabela,&tabelapintada,clical,clicac,4);
+	cout << contarPixels(&tabelapintada,lin,col) << "Pixels pintados";
+    system("cls");
+    //Vamos armazenar a tabela em uma fila
+    queue <string> fila;
+    for(int i=0;i<lin;i++){
+        	for(int j=0;j<col;j++){
+                    fila.push(tabela[i][j]);
+        	}
+        	}
+
+	system("PAUSE");
+	return EXIT_SUCCESS;
+}

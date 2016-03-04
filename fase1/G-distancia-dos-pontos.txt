@@ -1,0 +1,50 @@
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+#include <cmath>
+#include <iomanip>
+
+//Problema G
+//Distância dos pontos
+
+using namespace std;
+
+
+int main(int argc, char *argv[]) {
+	
+	vector<int> vetx, vety;
+	double d = 0;
+	double menord;
+	
+	int n, x, y;
+	int i, j;
+	
+	 cout << ("Digite valor N");
+	cin >> (n);
+	
+	
+	for (i=0; i < n; i++){
+		cout << ("Digite coordenada");
+		cin >> (x, y);
+		vetx.push_back(x);
+	    vety.push_back(y);
+		
+	}
+	
+	menord = sqrt(pow(vetx[1] - vetx[0], 2 ) + pow(vety[1] - vety[0], 2));
+	for (i=1; i<n; i++){
+		for (j=0; j < (i-1); j++){
+			d = sqrt(pow(vetx[i] - vetx[j],2) + pow(vety[i] - vety[j],2));
+			if (d < menord)
+				menord = d;
+			
+		}
+	}
+	cout << setiosflags (ios::fixed) << setprecision (4) << menord << endl;;
+	return 0;
+}
+

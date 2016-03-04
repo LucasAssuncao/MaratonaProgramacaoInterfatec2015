@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(){
+
+  int l, c;
+  int i, j;
+  char lotes[l][c];
+  int achou = 0;
+
+  do{
+    printf("Informe a quantidade de linhas: ");
+    scanf ("%d", &l);
+
+    printf("Informe a quantidade de colunas: ");
+    scanf ("%d", &c);
+  }while (((l <= 0 )||(l > 1000)) && ((c <= 0)||(c > 1000)));
+
+
+  printf("\nInsira os moradores nos lotes: \n");
+  for (i=0; i<l; i++){
+    for (j=0; j<c; j++){
+      lotes[i][j] = tolower(lotes[i][j]);
+    }
+  }
+
+  // Snippet para converter em Lowercase as siglas dos nomes
+  for (i=0; i<l; i++){
+    for (j=0; j<c; j++){
+      printf("Lote: [%d][%d]", i,j);
+      scanf("%c", &lotes[i][j]);
+    }
+  }
+  // Snippet
+
+  printf("\n");
+
+  for (i=0; i<l; i++){
+    for (j=0; j<c; j++){
+      if (lotes[i][j]=='a'){
+        if ((lotes[i][j+1]=='b') || (lotes[i][j-1]=='b')){
+          achou =+ 1;
+        }
+      }
+    }
+  }
+
+
+  for (i=0; i<l; i++){
+    for (j=0; j<c; j++){
+      if (lotes[i][j]=='a'){
+        if ((lotes[i][j+1]=='d') || (lotes[i][j-1]=='d')){
+          achou =+ 1;
+        }
+      }
+    }
+  }
+
+
+  for (i=0; i<l; i++){
+    for (j=0; j<c; j++){
+      if (lotes[i][j]=='b'){
+        if ((lotes[i][j+1]=='a') || (lotes[i][j-1]=='a')){
+          achou =+ 1;
+        }
+      }
+    }
+  }
+
+
+  for (i=0; i<l; i++){
+    for (j=0; j<c; j++){
+      if (lotes[i][j]=='b'){
+        if ((lotes[i][j+1]=='c') || (lotes[i][j-1]=='c')){
+          achou =+ 1;
+        }
+      }
+    }
+  }
+
+  for (i=0; i<l; i++){
+    for (j=0; j<c; j++){
+      if (lotes[i][j]=='d'){
+        if ((lotes[i][j+1]=='a') || (lotes[i][j-1]=='a')){
+          achou =+ 1;
+        }
+      }
+    }
+  }
+  if (achou == 0){
+      printf("V");
+  }else{
+      printf("F");
+  }
+  system ("Pause");
+  return 0;
+}

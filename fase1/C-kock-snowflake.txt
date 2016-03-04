@@ -1,0 +1,59 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+#include <cmath>
+#include <iomanip>
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+//Problem C
+//Koch Snowflake
+
+using namespace std;
+
+int main(int argc, char** argv) {
+	double s, n;
+	double area, areanovo;
+	int i;
+	double evolucaototal;
+	int quanttriangulo;
+	double total;
+	double evolucao;
+	
+	cout << ("Digite o valor de S, ponto flutuante:");
+	cin >> (s);
+	cout << ("Digite o valor de N, numero de evolução:");
+	cin >> (n);
+	
+	system("cls");
+	area = ((pow(s,2))*sqrt(3))/4;
+	
+	cout << ("Area do triangulo:");
+	cout << setiosflags (ios::fixed) << setprecision (8) << area << endl;
+
+		s = s/3; 
+		
+	areanovo = ((pow(s,2))*sqrt(3))/4;
+	
+	cout << ("Area do triangulo em tamanho novo:");
+	cout << setiosflags (ios::fixed) << setprecision (8) << areanovo << endl;
+		
+	evolucao = 3*4;
+	
+	quanttriangulo = 0; 
+	
+	for (i = 1; i <= n; i ++){
+		quanttriangulo = quanttriangulo * 12; 
+	}	
+	total = quanttriangulo * areanovo;
+	
+	cout << ("Cada triangulo gera: ");
+	cout << evolucao;
+	cout << (" triangulos por evolução, triangulos gerados no total: ");
+	cout << quanttriangulos;
+	cout << ("Somando a area de todos os triangulos temos:");
+	cout << setiosflags (ios::fixed) << setprecision (8) << total << endl;
+	
+	return 0;
+}

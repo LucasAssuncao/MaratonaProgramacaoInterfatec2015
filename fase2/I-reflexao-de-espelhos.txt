@@ -1,0 +1,86 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+  {
+
+int laserx, lasery;
+int xa, ya, xb, yb, xc, yc, xd, yd;
+int i;
+
+laserx = 0;
+lasery = 0;
+
+cout << ("Xa") << endl;
+cin >> xa;
+cout << ("Ya") << endl;
+cin >> ya;
+cout << ("Xb") << endl;
+cin >> xb;
+cout << ("Yb") << endl;
+cin >> yb;
+cout << ("Xc") << endl;
+cin >> xc;
+cout << ("Yc") << endl;
+cin >> yc;
+cout << ("Xd") << endl;
+cin >> xd;
+cout << ("Yd") << endl;
+cin >> yd;
+
+		if ( xa <= xc) {
+			for (laserx=0;laserx < xa+1; i++){
+				laserx=laserx+1;
+				lasery=lasery+1;
+			}
+    	}
+    	if (xa >= xc) {
+    		for (laserx=0;laserx < xc+1; i++){
+				laserx=laserx+1;
+				lasery=lasery+1;
+			}
+    	}
+
+            if ((((laserx > xa) && (laserx <xb) && (lasery == ya)) || ((lasery == xb) && (laserx > ya) && (laserx < yb))) || (((laserx > xc) && (laserx <xd) && (lasery == yc)) || ((lasery == xd) && (laserx > yc) && (laserx < yd)))) {
+                if (xa <= xc){
+                    for (laserx=laserx;laserx < xa+1; laserx++){
+                        laserx ++;
+                        lasery --;
+                        lasery --;
+                    }
+                }
+                if (xa >= xc) {
+                    for (laserx=laserx;laserx < xc+1; laserx++){
+                        laserx ++;
+                        lasery --;
+                        lasery --;
+                    }
+                }
+                if ((((xa <= xc ) || (xa <= xd) || (xb <= xc) || (xb <= xd))) && ((ya > yc) || (ya > yd) || (yb > yc) || (yb > yd))){
+                    for (lasery=lasery;lasery < yc;lasery++){
+                        laserx --;
+                        laserx --;
+                        lasery ++;
+                    }
+                }
+                if (((xc <= xa ) || (xc <= xb) || (xd <=xa) || (xd <= xb)) && ((yc > ya) || (yc > yb) || (yd > ya) || (yd > yb))){
+                    for (lasery=lasery;lasery < ya;lasery++){
+                        laserx --;
+                        laserx --;
+                        lasery ++;
+                    }
+                }
+                if (((laserx > xa) && (laserx <xb) && (lasery == ya)) || ((lasery == xb) && (laserx > ya) && (laserx < yb)) || ((laserx > xc) && (laserx <xd) && (lasery == yc)) || ((lasery == xd) && (laserx > yc) && (laserx < yd))) {
+                    cout << ("N") << endl;
+                } else {
+                  cout << ("S") << endl;
+                }
+            } else {
+              cout << ("S") << endl;
+              }
+
+    system("PAUSE");
+    return 0;
+}

@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+
+    int num, t;
+
+    printf("Digite um numero: ");
+    scanf("%d", &num);
+
+    t = (num*(num+1))/2;
+    printf("\n%d\n", t);
+
+    system("PAUSE");
+    return 0;
+}

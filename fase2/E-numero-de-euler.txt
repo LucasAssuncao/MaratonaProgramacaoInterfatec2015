@@ -1,0 +1,58 @@
+#include<iostream>
+#include<conio.h>
+#include <iomanip> //formatar as casas decimais
+using namespace std;
+int qtd;
+int armazena[20];
+void fila(int armazena[],int n){
+  int armazenafila[n];  
+ for(int i=qtd;i<0;i--){
+  armazenafila[i] = armazena[(qtd-1)-i]; // exemplo armazenafila[20] = armazena[21-20]=armazena[1]
+ }//for
+}//fila
+double fat(double n){
+       double fatorial=1;        
+       int i;
+       if (n == 0 ){ fatorial = 1;
+       }else{
+           for(i=0;i<n;i++){
+            fatorial = fatorial * (n-i);
+           }
+      }//else
+      return fatorial;
+}
+double eu(double n){ /* e  = (1/0!) + (1/1!) + (1/2!)...(1/n!)*/
+double e=0;
+     int i;
+       for(i=0;i<=n;i++){
+        e = e +   ( 1 / ( fat(i)));
+       }
+ return e;
+}
+int main(){
+    double n;
+    double t;
+    do{
+        do{
+             system("cls");      
+            cout<<"+------------------------------------------+\n";
+            cout<<"+Informe -1 para encerrar a aplicacao      +\n";
+            cout<<"+------------------------------------------+\n";
+            cout<<"informe um valor: ";
+            cin>>n;
+       }while(n< -1 || n >12);  
+
+       if(n != -1){
+       t = eu(n);
+       armazena[qtd]= t;
+       qtd=qtd+1;
+       fila(armazena,qtd);
+       cout<<"O valor seria: ";
+       // formatacao de 6 casas decimais
+       cout << setiosflags (ios::fixed) << setprecision(6) << t<<endl;  
+       }else {cout<<"\n Obrigado por usar o aplicativo\n";}
+      system("pause"); 
+     }while(n!= -1);  
+    return 0;
+}
+

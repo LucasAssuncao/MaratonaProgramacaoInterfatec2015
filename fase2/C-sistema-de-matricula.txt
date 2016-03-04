@@ -1,0 +1,105 @@
+#include <iostream>
+#include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+using namespace std;
+int i,j,n;
+struct cadastro{
+       int id;
+       char nome[50];
+       char pescola;
+       double renda; 
+       char bolsa;
+       char irmaos;
+       char mae;
+};
+void fila(cadastro novo){
+   cadastro novofila;
+ for(int i=n;i<n;i--){
+  novofila[i] = novo[(n-1)-i]; // exemplo novofila[5] = novo[6-5]=novo[1]
+ }//for
+}//fila
+void exibir(cadastro ord[],int n){
+for(i=0;i<n;i++){
+      cout<<"\n--------------------------------------\n";             
+      cout <<"Nome:\t|"<< ord[i].nome<<endl;
+      cout <<"Escola:\t|" << ord[i].pescola<<endl;
+      cout <<"Renda:\t|" << ord[i].renda<<endl;
+      cout <<"Bolsa:\t|"<<  ord[i].bolsa<<endl;
+      cout <<"Irmaos:\t|"<< ord[i].irmaos<<endl;
+      cout <<"Mae:\t|" <<ord[i].mae<<endl;
+
+}//for
+}
+
+int main(){
+    int op,i,j,c=0;
+cout << "Informe a quantidade de cadastros: ";    
+cin >> n;
+    cadastro cad[n];
+    cadastro ord[n];
+for(i=0;i<n;i++){    
+      system("cls");       
+      cout << "Cadastro  - "<<i+1 <<endl;       
+      cout <<"Informe o nome: ";
+      cin >>   cad[i].nome;
+      cout <<"Informe a Renda Familiar: ";
+      cin >>   cad[i].renda;
+      
+      ////////  ESCOLA
+      do{
+            cout <<" Mora proximo a escola? ";
+            cin >>   cad[i].pescola;
+            if (cad[i].pescola == 's' || cad[i].pescola == 'n'){op = 1;
+            }else{ op =2;}
+      }while(op == 2);
+      //////// BOLSA FAMILIA
+      do{
+            cout <<" Tem Bolsa Familia? ";
+            cin >>   cad[i].bolsa;
+            if (cad[i].bolsa == 's' || cad[i].bolsa == 'n'){op = 1;
+            }else{ op =2;}
+      }while(op == 2);
+      
+      //////// TEM IRMAOS MATRICULADOS?
+      do{
+            cout <<" Possui irmaos matriculados na escola? ";
+            cin >>   cad[i].irmaos;
+            if (cad[i].irmaos == 's' || cad[i].irmaos == 'n'){op = 1;
+            }else{ op =2;}
+      }while(op == 2);
+      
+      ////////// MAE TRABALHA FORA?
+      do{
+            cout <<" A Mae trabalha fora? ";
+            cin >>   cad[i].mae;
+            if (cad[i].mae == 's' || cad[i].mae == 'n'){op = 1;
+            }else{ op =2;}
+      }while(op == 2);
+} //for
+// ORDENAR PELA PROXIMO A ESCOLA
+for(i=0;i<n;i++){
+   if(cad[i].pescola == 's'){
+    ord[c] = cad[i];c++;
+   }
+   
+}
+// Ordena pela menor renda
+for(i=0;i<n;i++){
+    for(j=i+1;j<n;j++){
+            if(cad[j].renda < cad[i].renda){
+             swap(cad[j],cad[i]);             
+            }
+    }//for j
+}//for i
+for(i=0;i<n;i++){
+   if(cad[i].pescola == 'n'){
+    ord[c] = cad[i];c++;
+    fila(ord);
+   }
+}   
+exibir(ord,n);
+    system("pause");
+    return 0;
+    
+}

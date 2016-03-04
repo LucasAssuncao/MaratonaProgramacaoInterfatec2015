@@ -1,0 +1,76 @@
+#include <cstdlib>
+#include <iostream>
+#include <cstring>
+#include <queue>
+using namespace std;
+struct movimento{
+int linha;
+int coluna;
+};
+int main(int argc, char *argv[]){
+	int linhas,colunas;
+	int linha_robo,coluna_robo;
+	queue <int> caminho;
+	char Direcao; //Norte(S) Sul(S),Leste(L) ou Oeste(O)
+	cout << "Informe a quantidade de linhas:";cin >> linhas;
+	cout << "Informe a quantidade de colunas:";cin >> colunas;
+    int matriz[linhas][colunas];
+    for(int i=0;i<linhas;i++){
+        for(int j=0;j<colunas;j++){
+            cout <<"Matriz[" << i << "][" << j << "]:";cin >> matriz[i][j];
+        }
+    }
+    cout << "Digite a direção(N/S/L/O):"; cin >> Direcao;
+    cout << "Informe a linha em que o robo esta:";cin >> linha_robo;
+	cout << "Informe a coluna em que o robo esta:";cin >> coluna_robo;
+	movimento proximo_movimento;
+	int soma,menor;
+	menor = 999999999; //Iniciar com um numero alto para o primeiro numero ser substituido
+	soma =matriz[linha_robo][coluna_robo];
+	do{
+                caminho.push(soma =matriz[linha_robo][coluna_robo]);
+                //Esquerda
+                if(coluna_robo-1>=0 && matriz[linha_robo][coluna_robo-1]!=-9){ //se não sair da matriz e não for uma barreira
+                    menor = matriz[linha_robo][coluna_robo-1];
+                    proximo_movimento.linha=linha_robo;
+                    proximo_movimento.coluna=coluna_robo-1;
+                }
+                //Direita
+                if(coluna_robo+1<=colunas && matriz[linha_robo][coluna_robo+1]!=-9){ //se não sair da matriz e não for uma barreira
+                    if(matriz[linha_robo][coluna_robo+1]<menor){
+                        menor = matriz[linha_robo][coluna_robo+1];
+                        proximo_movimento.linha=linha_robo;
+                        proximo_movimento.coluna=coluna_robo+1;
+                    }
+                }
+                //Acima
+                if(linha_robo-1>=0 && matriz[linha_robo-1][coluna_robo]!=-9){
+                    if(matriz[linha_robo-1][coluna_robo]<menor){
+                        menor = matriz[linha_robo-1][coluna_robo];
+                        proximo_movimento.linha=linha_robo-1;
+                        proximo_movimento.coluna=coluna_robo;
+                    }
+                }
+                //Embaixo
+                if(linha_robo+1<=linhas && matriz[linha_robo+1][coluna_robo]!=-9){
+                    if(matriz[linha_robo+1][coluna_robo]<menor){
+                        menor = matriz[linha_robo+1][coluna_robo];
+                        proximo_movimento.linha=linha_robo+1;
+                        proximo_movimento.coluna=coluna_robo;
+                    }
+                }
+                soma = soma + matriz[proximo_movimento.linha][proximo_movimento.coluna];
+                linha_robo=proximo_movimento.linha;
+                coluna_robo=proximo_movimento.coluna;
+	}while(matriz[linha_robo][coluna_robo] != 0);//Até chegar no 0
+    //Vamos exibir o caminho
+    cout << "Caminho: ";
+    while(!caminho.empty()){ //enquanto não estiver vazio
+            cout << caminho.front() << " ";
+            caminho.pop();
+    }
+	system("PAUSE");
+	return EXIT_SUCCESS;
+}
+
+

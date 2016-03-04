@@ -1,0 +1,88 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+
+int n; // numero de casos
+int xa, ya; // Posicao do radar
+int r; // alcance do radar
+int m;
+int xm[m], ym[m];
+int i, k;
+char letters[25] = {'B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+char letra[m];
+int cont, rad, let;
+
+cont = 0;
+rad = 0;
+m = 0;
+let = -1;
+
+do {
+cout << "Quantidade de casos: ";
+cin >> n;
+cout << endl;
+} while ((n < 1) || (n > 99));
+
+    for (i=0;i<n;i++) {
+        cout << "Posicao do radar (Xa e Ya): " << endl;
+        cin >> xa; cin >> ya;
+        do {
+        cout << "Alcance do radar: " << endl;
+        cin >> r;
+        } while ((r < 1) || (r > 99));
+        do {
+        cout << "Quantidade de misseis: " << endl;
+        cin >> m;
+        } while ((m < 1) || (m > 25));
+            for (k=0;k<m;k++) {
+                do {
+                cout << "Posicao " << k+1 << ": " << endl;
+                cin >> xm[k]; cin >> ym[k];
+                } while (((xm[k] < 0) || (xm[k] > 99)) || (ym[k] < 0) || (ym[k] > 99));
+            }
+    }
+
+        for (i=0;i<m;i++) {
+            if (((xm[i]) < (xa+r)) && ((xm[i]) > (xa-r)) && ((ym[i]) < (xa+r)) && ((ym[i]) > (xa-r))){
+                cont ++;
+                let ++;
+                letra[let] = letters[let];
+            }            
+            if (rad < r+1) {
+                xa ++;
+                ya ++;
+                rad ++;
+            }
+        }
+
+    if (cont == 0) {
+        cout << "OUT OF RANGE" << endl;
+    } else {
+        for (i=0;i<m;i++) {
+        cout << letra[i] << " ";
+        }
+    }
+
+    cout << endl;
+
+    system("PAUSE");
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

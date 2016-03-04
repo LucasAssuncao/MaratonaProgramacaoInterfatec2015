@@ -1,0 +1,77 @@
+#include <cstdlib>
+#include <iostream>
+#include <queue>
+#include <sstream>
+struct vareta{
+    bool inicia;//Deve iniciar(TRUE) quando China coloca o prato na vareta
+    int tempogirando;//segundo em que o prato vai parar de girar baseado na força que China colocou sobre o prato
+}; // struct
+int positivo(int x){
+    if(x<0){
+        return x*-1;
+    }//if x
+    return x;
+}//INT positivo
+using namespace std;
+int main(int argc, char *argv[]){
+    int V,TM;//V=numero de varetas 1 = V = 50 TM=tempo para se mover para a proxima vareta 1 = TM = 10
+    int I;//vareta onde china estara quando iniciar o jogo
+    int N;//Quantidade de movimentos que China pretende fazer 1 = N = 100
+    int VV,F;//VV (1 = VV = V) V= a vareta para a qual ele vai se mover F= força que ele aplicará no prato da vareta logo que chegar lá (1 = F = 10),
+    int TG=0;
+    bool quebrou=false;
+    queue <string> fila;
+    std::stringstream ss;
+    while(true){
+            cin >> V >> TM;//Pega o numero de varetas e o tempo para se mover até a proxima vareta
+            if(V==0&&TM==0) break; //Sai do programa caso os dois sejam 0;
+            cin >> I; //onde china inicia o jogo
+            cin >> N; // Quantidade de movimentos de china
+            vareta varetas[V];
+            //iniciando a struct varetas
+            for (int i=0;i<V;i++){
+                varetas[i].inicia=false;
+                varetas[i].tempogirando=-1;
+            }//for i
+            int segundos=0;
+            int tempomovimento,espera;
+            int posicao = I-1; //posição de China em relação ao vetor
+            int i=0;
+            cout<<"Digite a proxima vareta e a forca:";
+            cin >> VV >> F;
+            tempomovimento = positivo(I - VV)*TM; //calculando o tempo que China demorara para chegar a proxima vareta e jogando nos segundos que já se passaram
+            espera=tempomovimento;
+            while(true){
+                //vamos ver se algum prato quebrou nesse instante
+                for(int j=0;j<V;j++){
+                        if(varetas[j].tempogirando==segundos){//se o parou de girar
+                            ss << "Segundos em que o prato quebrou:"<< varetas[j].tempogirando << " Prato Quebrado: " << j+1;
+                            cout << ss.str() << endl();
+                            fila.push(ss.str());
+                            quebrou=true;
+                            break;
+                    }//if
+                }//for j
+                if(espera==segundos){ //Se chegou na vareta
+                    if(varetas[VV-1].inicia==false) varetas[VV-1].tempogirando = segundos;
+                    varetas[VV-1].tempogirando = varetas[VV-1].tempogirando + F*2 + F*2;
+                    TG = F*2;
+                    cout<<"Digite a proxima vareta e a forca:";
+                    cin >> VV >> F;
+                    tempomovimento = segundos + (positivo(I - VV)*TM); //calculando o tempo que China demorara para chegar a proxima vareta contando com o tempo que perdeu girando
+                    espera=segundos + tempomovimento + TG;
+                    varetas[VV-1].inicia==true;
+                }// if 
+                segundos++;
+                if(quebrou) break; //se quebrou sai do loop while
+             }
+            if(quebrou){ //se quebrou sai do segundo loop while
+                    break;
+            }else{
+                    cout << "OK";
+                    fila.push("OK");
+            }//else
+    }//while
+	system("PAUSE");
+	return EXIT_SUCCESS;
+}

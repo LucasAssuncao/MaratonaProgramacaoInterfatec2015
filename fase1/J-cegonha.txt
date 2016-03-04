@@ -1,0 +1,85 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+#include <cmath>
+#include <iomanip>
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+//Problema J
+//Cegonha
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+using namespace std;
+
+int main(int argc, char** argv) {
+	
+	int quantgestante, i;
+	double altura, pesoanterior, pesoatual;
+	double imc, engordou;
+
+	
+	cout << ("Digite a quantidade de gestantes para avaliar:");
+	cin >> (quantgestante);
+	
+	system("cls");
+	
+	for (i=1; i <= quantgestante; i++){
+		
+		
+	cout << ("Vamos avaliar a gestante numero ");
+	cout << i;
+	cout << endl;
+	
+	cout << ("Digite a altura da gestante:");
+	cin >> (altura);
+	
+	cout << ("Digite o peso da gestante antes da gravidez:");
+	cin >> (pesoanterior);
+	
+	cout << imc;
+	
+    cout << ("Digite o peso atual da gestante:");
+	cin >> (pesoatual);
+	
+	system("cls");
+	imc = pesoanterior/pow(altura,2);	
+	engordou = pesoatual - pesoanterior;
+	
+	if (imc < 18.5){
+		if (engordou >= 12.5 && engordou <= 18){
+		cout << ("Ganho Normal");
+	    }else if (engordou < 12.5){
+	    cout << ("Ganho Insuficiente");	
+		}else{
+		cout << ("Ganho Exagerado");	
+		}
+	}else if ( imc >= 18.5 && imc <= 25){
+		if (engordou >= 11 && engordou <= 16){
+		cout << ("Ganho Normal");	
+		}else if (engordou < 11){
+	    cout << ("Ganho Insuficiente");	
+		}else{
+		cout << ("Ganho Exagerado");	
+		}
+	}else if (imc >= 25 && imc < 30){
+		if (engordou >= 7 && engordou <= 11.5){
+		cout << ("Ganho Normal");	
+		}else if (engordou < 7){
+	    cout << ("Ganho Insuficiente");	
+		}else{
+		cout << ("Ganho Exagerado");	
+		}
+	}else{
+	  if (engordou >= 5 && engordou <= 9){
+	  cout << ("Ganho Normal");	
+	  }else if (engordou < 5){
+	    cout << ("Ganho Insuficiente");	
+		}else{
+	  cout << ("Ganho Exagerado");	
+		}
+	}
+}
+	return 0;
+}

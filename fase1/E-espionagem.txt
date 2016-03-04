@@ -1,0 +1,137 @@
+#include <cstdlib>
+#include <iostream>
+#include <ctype.h>
+#include <string>
+
+using namespace std;
+
+int a = 1; int b = 2; int c = 3; int d = 4;
+int e = 5; int f = 6; int g = 7; int h = 8;
+int i = 9; int j = 10;int k = 11;int l = 12;
+int m = 13;int n = 14;int o = 15;int p = 16;
+int q = 17;int r = 18;int s = 19;int t = 20;
+int u = 21;int v = 22;int w = 23;int x = 24;
+int y = 25;int z = 26;
+
+char frase[100];
+char frasec[100];
+char procurar[100];
+int cifra = 3;
+int ii;
+
+int main(int argc, char *argv[])
+{ 
+    cout << "Digite a frase: " << endl;
+    gets (frase);
+    
+        for (ii=0;ii<100;ii++){
+            frasec[ii] = frase[ii];
+        }
+        
+        cout << endl;
+        
+        for (ii=0;ii<100;ii++){
+            if (frase[ii] == 'A' || frase[ii] == 'a') {
+               frasec[ii] = 'D';             
+            }
+            else if (frase[ii] == 'B' || frase[ii] == 'b') {
+               frasec[ii] = 'E';             
+            }
+            else if (frase[ii] == 'C' || frase[ii] == 'c') {
+               frasec[ii] = 'F';             
+            }
+            else if (frase[ii] == 'D' || frase[ii] == 'd') {
+               frasec[ii] = 'G';             
+            }
+            else if (frase[ii] == 'E' || frase[ii] == 'e') {
+               frasec[ii] = 'H';             
+            }
+            else if (frase[ii] == 'F' || frase[ii] == 'f') {
+               frasec[ii] = 'I';             
+            }
+            else if (frase[ii] == 'G' || frase[ii] == 'g') {
+               frasec[ii] = 'J';             
+            }
+            else if (frase[ii] == 'H' || frase[ii] == 'h') {
+               frasec[ii] = 'K';             
+            }
+            else if (frase[ii] == 'I' || frase[ii] == 'i') {
+               frasec[ii] = 'L';             
+            }
+            else if (frase[ii] == 'J' || frase[ii] == 'j') {
+               frasec[ii] = 'M';             
+            }
+            else if (frase[ii] == 'K' || frase[ii] == 'k') {
+               frasec[ii] = 'N';             
+            }
+            else if (frase[ii] == 'L' || frase[ii] == 'l') {
+               frasec[ii] = 'O';             
+            }
+            else if (frase[ii] == 'M' || frase[ii] == 'm') {
+               frasec[ii] = 'P';             
+            }
+            else if (frase[ii] == 'N' || frase[ii] == 'n') {
+               frasec[ii] = 'Q';             
+            }
+            else if (frase[ii] == 'O' || frase[ii] == 'o') {
+               frasec[ii] = 'R';             
+            }
+            else if (frase[ii] == 'P' || frase[ii] == 'p') {
+               frasec[ii] = 'S';             
+            }
+            else if (frase[ii] == 'Q' || frase[ii] == 'q') {
+               frasec[ii] = 'T';             
+            }
+            else if (frase[ii] == 'R' || frase[ii] == 'r') {
+               frasec[ii] = 'U';             
+            }
+            else if (frase[ii] == 'S' || frase[ii] == 's') {
+               frasec[ii] = 'V';             
+            }
+            else if (frase[ii] == 'T' || frase[ii] == 't') {
+               frasec[ii] = 'W';             
+            }
+            else if (frase[ii] == 'U' || frase[ii] == 'u') {
+               frasec[ii] = 'X';             
+            }
+            else if (frase[ii] == 'V' || frase[ii] == 'v') {
+               frasec[ii] = 'Y';             
+            }
+            else if (frase[ii] == 'W' || frase[ii] == 'w') {
+               frasec[ii] = 'Z';             
+            }
+            else if (frase[ii] == 'X' || frase[ii] == 'x') {
+               frasec[ii] = 'A';             
+            }
+            else if (frase[ii] == 'Y' || frase[ii] == 'y') {
+               frasec[ii] = 'B';             
+            }
+            else if (frase[ii] == 'Z' || frase[ii] == 'z') {
+               frasec[ii] = 'C';             
+            }
+             
+            cout << frasec[ii];
+        }
+        
+        cout << "Digite uma frase para procurar: " << endl;
+        gets (procurar);
+        
+        int sim = 0;
+        for (ii=0; ii < 100; ii++){
+            if (procurar[ii] == frase[ii]) {
+               sim = 1;
+            } else if (sim == 0){
+              break;
+            }
+        } 
+        if (sim == 1) {
+                cout << "S" << endl;
+        } else {
+               cout << "N" << endl;
+               } 
+               
+        cout << endl;
+        
+    system("PAUSE");
+    return EXIT_SUCCESS;
+}

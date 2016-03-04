@@ -1,0 +1,85 @@
+
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+#include <cmath>
+
+/* Problema F - Banheiro!
+
+/* Fila de espera, H, M, M, H, M, M
+
+/* B = numero de banheiro, então se tiver 3 banheiros as 3 pessoas do inicio da fila tem tempo de espera = 0
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+using namespace std;
+
+int main(int argc, char *argv[]) {
+	
+	int evento; // 1 aniversario, 2 casamento, 3 show;
+	int B; // numero de banheiros
+	int tempogastoM, tempogastoH; // baseado no tipo do envento vai armazenar quando as mulheres e homens gastam no banheiro em tempo.
+	int convidados = 36; // vai ser o tamanho total da fila de espera para ir ao banheiro
+	int vet [convidados];
+	int contador = 0;
+	int i = 0;
+	int qual = 0;
+	int tempo = 0;
+	//referente ao sexo do convidado 0 = mulher 1 = homem.
+	
+	
+	do{
+	
+	cout << ("Qual o evento?, 1 aniversario, 2 casamento , 3 show");
+	cin >> (evento);
+	
+	if (evento==1){
+		tempogastoM = 10; 
+		tempogastoH = 3; 
+	} else if (evento==2){
+		tempogastoM = 15;
+		tempogastoH = 5;
+	}else if (evento==3){
+		tempogastoM = 5;
+		tempogastoH = 1;
+	}else{
+		cout << ("Evento invalido, digite 1 aniversario, 2 casamento, 3 show");
+	}
+}while (evento!=1 && evento!=2 && evento!=3);
+	
+
+do{
+	
+	cout << ("Quantos banheiros?");
+	cin >> (B);
+	
+	if (B < 0 ){
+		cout << ("Quantidade de banheiros invalida.");
+	}else{
+		convidados = convidados;
+	}
+	
+}while (B < 0 );
+
+contador = convidados;
+
+	
+	cout << ("Seu evento tem: " , convidados);
+	cout << ("A fila do banheiro tem padrao H M M H M M");
+	
+	cout << ("Você quer saber o tempo de espera do convidado de qual posicao?");
+	cin >> (qual);
+	
+	if (qual <= B){
+		cout << ("O tempo de espera desse convidado é zero");
+	}else{
+		for (i=1;i<qual;i++){
+		
+			tempo = tempo + tempogastoH + (2*tempogastoM);
+			}
+		}
+		cout << ("O tempo de espera desse convidado em minutos é: ", tempo);
+	
+	return 0;
+}
+

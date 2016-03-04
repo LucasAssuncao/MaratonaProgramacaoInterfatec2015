@@ -1,0 +1,45 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+#include <cmath>
+
+/* Problema H - valor do troco!
+
+*/
+
+using namespace std;
+
+int main(int argc, char *argv[]) {
+	
+	int quantidade; // quantidade do produto
+	double unitario; // preco unitario do produto
+	double total; //valor total doque o cliente comprou
+	double recebido, troco; 
+
+	do{
+	
+	cout << ("Digite quantidade do produto");
+	cin >> (quantidade);
+
+}while (quantidade <= 0);
+	
+	cout << ("Digite preco unitario:");
+	cin >> (unitario);
+	
+	total = quantidade*unitario;
+		
+	cout << ("Digite quanto voce recebeu do cliente:");
+	cin >> (recebido);
+	
+	if (recebido < total){
+		cout << ("O cliente não pagou por tudo");
+	}else if (recebido == total){
+		cout << ("O valor esta certo e nao precisa de troco.");
+	}else{
+		troco = recebido - total;
+		cout << ("O valor do troco é:");
+		cout << (troco);
+	}
+	
+	return 0;
+}

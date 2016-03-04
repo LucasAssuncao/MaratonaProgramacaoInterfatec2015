@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+	// EXEMPLO
+
+	// 	Quantidade por Mês		Valores por Mês			Total por Mês
+	// +--------------------+  +--------------------+  +---------------------+
+	// |     | P1 | P2 | P3 |  |    | COST | PROFIT |  |     | COST | PROFIT |
+	// | JAN |  1 |  2 |  3 |  | P1 |   1  |    0   |  | JAN |  17  |    8   |
+	// | FEB |  4 |  5 |  6 |  | P2 |   2  |    1   |  | FEB |  38  |   17   |
+	// | MAR |  7 |  8 |  9 |  | P3 |   4  |    2   |  | MAR |  59  |   26   |
+	// +--------------------+  +--------------------+  +---------------------+
+
+
+int main(int argc, char *argv[]){
+
+	int resultado[100][100];
+	int matrizQtdMes[12][20], matrizLucro[20][2];
+	int i, j, k; 	// Para os FORS
+	int n, m = 0;	// Para o While do Inicio
+	int P; 			// Quantidade de Produtos
+	int M; 			// Quantidade de Meses
+
+	printf("Deseja testar quantas vezes: ");
+	scanf("%d", &n);
+
+	while(m != n){
+
+		do{
+			printf("Digite a Quantidade de Meses (Minimo 1, Maximo 12 meses): ");
+			scanf("%d", &M);
+		}while((M <= 0) || (M > 12));
+
+		do{
+			printf("Digite a Quantidade de Produtos (Minimo 1, Maximo 20 produtos): ");
+			scanf("%d", &P);
+		}while((P <= 0) || (P > 20));
+
+		system("CLS");
+
+		//--- Inicio: Bloco 1
+		for (i = 0; i < M; i++){
+			for (j = 0; j < P; j++){
+				printf("Qual a quantidade do 'PRODUTO %d' vendida no 'MES %d': ", j+1, i+1);
+				scanf("%d",&matrizQtdMes[i][j]);
+			}
+		}
+		//--- Fim: Bloco 1
+
+		//--- Inicio: Bloco 2
+		for (i = 0; i < P; i++){
+			for (j = 0; j < 2; j++){
+				if (j == 0){
+					system("CLS");
+					printf("Qual o 'CUSTO' do produto %d: ", i+1);
+					scanf("%d",&matrizLucro[i][j]);
+				}else{
+					printf("Qual o 'LUCRO' do produto %d: ", i+1);
+					scanf("%d",&matrizLucro[i][j]);
+					system("CLS");
+				}
+			}
+		}
+		//--- Fim: Bloco 2
+
+		//--- Inicio: Bloco 3
+		for (i=0; i<M; i++) {
+		    for (j=0; j<2; j++) {
+		        for (k=0; k<P; k++) {
+		            resultado[i][j] += matrizQtdMes[i][k] * matrizLucro[k][j];
+		        }
+		    }
+		}
+		//--- Fim: Bloco 3
+
+		//Imprimir
+		for (i=0; i<M; i++) {
+
+			if (i == 0){
+				printf("\tCOST\tPROFIT\n");			
+			}
+
+			printf("Mes %d\t", i+1);
+		    
+		    for (j=0; j<2; j++) {
+		        for (k=0; k<P; k++) {
+		            if (j == 0){
+		            	printf("%d \t", resultado[i][k]);
+		            	break;
+		            }else{
+		            	printf("%d \n", resultado[i][j]);
+		            	break;
+		        	}
+		        }
+		    }
+		}
+		//Imprimir
+
+		m++;
+	}
+
+    system("PAUSE");
+    return 0;
+}

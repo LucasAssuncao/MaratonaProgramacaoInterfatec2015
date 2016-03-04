@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+
+    int i;
+    char raAntigo[9], raNovo[13];
+    char curso[2], ano[2], semestre[1], numSequencial[4];
+
+    printf("Digite o RA Antigo: ");
+    fgets(raAntigo, 9, stdin);
+
+    curso[0] = raAntigo[0];
+    curso[1] = raAntigo[1];
+
+    ano[0] = raAntigo[2];
+    ano[1] = raAntigo[3];
+
+    semestre[0] = raAntigo[4];
+
+    numSequencial[0] = raAntigo[5];
+    numSequencial[1] = raAntigo[6];
+    numSequencial[2] = raAntigo[7];
+
+/*
+==========================================================
+0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13
+F | F | F | C | C | C | A | A | S | T | N  | N  | N  | \0 <-RA Novo (Estrutura)
+  |   |   |   | C | C | A | A | S |   | N  | N  | N  | \0 <-RA Antigo (Estrutura)
+==========================================================
+*/
+
+    raNovo[0] = '0';
+    raNovo[1] = '0';
+    raNovo[2] = '3';
+
+    if (curso[0] == 'A'){
+	raNovo[3] = '0';
+    	raNovo[4] = '4';
+    	raNovo[5] = '8';
+    }
+
+    if (curso[0] == 'S'){
+	raNovo[3] = '0';
+    	raNovo[4] = '6';
+    	raNovo[5] = '1';
+    }
+
+    if (curso[0] == 'L'){
+	raNovo[3] = '0';
+    	raNovo[4] = '7';
+    	raNovo[5] = '4';
+    }
+
+    if ((curso[0] == 'P') && (curso[1] == 'L')){
+        raNovo[3] = '0';
+    	raNovo[4] = '8';
+    	raNovo[5] = '0';
+    }
+
+    if (curso[0] == 'P'){
+	raNovo[3] = '0';
+    	raNovo[4] = '9';
+    	raNovo[5] = '9';
+    }
+
+    if (curso[0] == 'O'){
+	raNovo[3] = '1';
+    	raNovo[4] = '0';
+    	raNovo[5] = '0';
+    }
+
+    raNovo[6] = ano[0];
+    raNovo[7] = ano[1];
+
+    raNovo[8] = semestre[0];
+
+    if (curso[1] == 'D') raNovo[9] = '1';
+    if (curso[1] == 'T') raNovo[9] = '2';
+    if (curso[1] == 'N') raNovo[9] = '3';
+
+    raNovo[10] = numSequencial[0];
+    raNovo[11] = numSequencial[1];
+    raNovo[12] = numSequencial[2];
+
+    for (i = 0; i < 13; ++i){
+    	printf("%c", raNovo[i]);
+    }
+
+    return 0;
+}
